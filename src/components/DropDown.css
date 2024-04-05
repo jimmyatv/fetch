@@ -1,0 +1,56 @@
+.dropDown {
+    padding: 5rem;
+    position: relative;
+}
+
+.btn-style {
+    display: block;
+    width: 50px;
+    height: 50px;
+    padding: 8px;
+    background-color: antiquewhite;
+    border-radius: 50%;
+    box-shadow: 1px 4px 3px rgba(0, 0, 0, 0.6);
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dropDown svg {
+    font-size: 1.5rem;
+}
+
+.list {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    margin-top: 60px;
+    opacity: 0;
+}
+
+.list.is-active {
+    opacity: 1;
+}
+
+.list>span {
+    transition: .2s linear;
+    opacity: 0;
+}
+
+.list>span.span-active {
+    opacity: 1;
+}
+
+.list>span:nth-child(2).span-active {
+    transition-delay: 0.2s ;
+}
+.list>span:nth-child(3).span-active {
+    transition-delay: 0.4s;
+    
+}
+.list>span:nth-child(4).span-active {
+    transition-delay: 0.6s;
+    
+}

@@ -1,18 +1,17 @@
 import './App.css';
-import Products from './components/Products';
-import { ProductsProvider } from './contexts/ProductsContext';
+import DropDown from './components/DropDown';
+import Navbar from './components/Navbar';
 
 const App = () => {
 
+  
+
 
   return (
-    <div>
-
-      <ProductsProvider>
-        <Products />
-      </ProductsProvider>
-
-    </div>
+    <>
+     <Navbar/>
+     <DropDown/>
+    </>
   );
 }
 

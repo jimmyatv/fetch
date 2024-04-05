@@ -1,0 +1,9 @@
+:root {
+    --mainColor: rgb(223, 159, 21);
+
+}
+
+.nav h4 {
+    font-family: 'MonteCarlo', cursive;
+    font-size: 36px;
+}
