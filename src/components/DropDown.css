@@ -1,6 +1,7 @@
 .dropDown {
     padding: 5rem;
     position: relative;
+    cursor: pointer;
 }
 
 .btn-style {
