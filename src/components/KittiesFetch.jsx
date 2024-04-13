@@ -1,4 +1,4 @@
-import { React, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import './KittiesFetch.css';
 
 const KittiesFetch = () => {
@@ -7,22 +7,30 @@ const KittiesFetch = () => {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-
-    (async () => {
-
-      const res = await fetch('https://dummyjson.com/users');
+    (async() => {
+      const res = await fetch('https://dummyjson.com/users')
       const data = await res.json()
 
       setKitties(data.users)
-      console.log(data.users)
-
-    })();
-
-  }, [])
+    })()
+  }, []);
 
   const handleSearch = (e) => {
-    setSearch(e.target.value)
+    setSearch(e.target.value);
   }
+
+  const regex = new RegExp(search, 'gi');
+
+  const filteredKitties = useMemo(() => {
+    return (
+        kitties.filter(kittie => (
+        kittie.firstName.match(regex) ||
+        kittie.lastName.match(regex) ||
+        (typeof kittie.age === 'number' && !isNaN(kittie.age) && kittie.age.toString().match(regex))
+      )
+      ));
+
+  }, [kitties, regex]);
 
   return (
     <div className='Kitties'>
@@ -31,20 +39,18 @@ const KittiesFetch = () => {
         <input type="text" placeholder='Search...' onChange={handleSearch} />
         <p>Test result: {search}</p>
       </div>
-      <div className="kittiesList">
-        {kitties.map((kittie, idx) => {
-          return (
-            <div className="kittie" key={idx}>
-              <p>{kittie.firstName}</p>
-              <p>{kittie.lastName}</p>
-              <p>{kittie.age}</p>
-              <img src={kittie.image} alt="" />
-            </div>
-          )
-        })}
+      <div style={{ margin: 'auto' }} className="kittiesList">
+        {filteredKitties.map((kittie, idx) => (
+          <div className="kittie" key={idx}>
+            <p>{kittie.firstName}</p>
+            <p>{kittie.lastName}</p>
+            <p>{kittie.age}</p>
+            <img src={kittie.image} alt="" />
+          </div>
+        ))}
       </div>
     </div>
-  )
+  );
 };
 
 export default KittiesFetch;
